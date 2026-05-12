@@ -275,7 +275,7 @@
             .then(response => response.json()) // Converte a resposta para JSON
             .then(data => {
                 if (data.result === 'success') {
-                    showResult('Vaga Reservada!', 'Tudo pronto!```** Verifique seu WhatsApp em breve.', '✅');
+                    showResult('Vaga Reservada!', 'Tudo pronto!', '✅');
                     form.reset();
                 } else {
                     // Mostra o erro de "Turma Lotada"Dica importante:** Como você mudou o código `.gs`, lembre-se de ir em **Implantar > Gerenciar Implantações** caso aconteça no servidor
