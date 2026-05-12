@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNA Pro Live - Escolha sua Turma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cna-red: #E30613;
+            --cna-blue: #004B93;
+            --white: #FFFFFF;
+            --gray-light: #F4F4F4;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--gray-light);
+            background-image: linear-gradient(135deg, #004B93 10%, #002d5a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #meu-formulario {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 450px;
+            border-top: 10px solid var(--cna-red);
+        }
+
+        .logo-placeholder {
+            text-align: center;
+            font-weight: 800;
+            font-size: 32px;
+            color: var(--cna-red);
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+        }
+
+        .logo-placeholder span { color: var(--cna-blue); }
+
+        .tagline {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--cna-blue);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .info-evento {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: var(--text-dark);
+            line-height: 1.6;
+            border-left: 5px solid var(--cna-blue);
+        }
+
+        .highlight-box {
+            background-color: #ffebeb;
+            color: var(--cna-red);
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 700;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 15px;
+            margin: 8px 0 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--cna-blue);
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--cna-red);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #b3050f;
+        }
+
+        label {
+            font-size: 14px;
+            color: var(--cna-blue);
+            font-weight: 700;
+        }
+
+        /* --- MODAIS --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 75, 147, 0.9);
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 350px;
+            width: 85%;
+            animation: popIn 0.4s ease-out;
+        }
+
+        .container-flex {
+            display: flex;
+            justify-content: center; 
+            align-items: center;    
+            padding-bottom: 10px;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid var(--cna-red);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .modal-icon { font-size: 60px; margin-bottom: 15px; display: block; }
+        .modal-content h2 { color: var(--cna-blue); margin-top: 0; }
+        .btn-modal { background-color: var(--cna-blue); }
+    </style>
+</head>
+<body>
+
+<div id="meu-formulario">
+    <!--<div class="logo-placeholder">CNA<span></span></div>-->
+    <div class="container-flex">
+        <img src="Logo CNA Pro - 1.png" style="width: 120px;">
+    </div>
+    
+    <div class="info-evento">
+        <strong style="font-size: 16px; color: var(--cna-red);">🚀 Sua Bolsa Pro Live Chegou!</strong><br><br>
+        Parabéns! Você ganhou uma bolsa para o curso <strong>Pro Live</strong>.<br>
+        
+        <div class="highlight-box">
+            ⚠️ Vagas limitadas! A alocação é feita por ordem de chegada. Seja rápido!
+        </div>
+    </div>
+    
+    <form id="form-inscricao">
+        <label for="nome">Nome Completo</label>
+        <input type="text" name="Nome" id="nome" placeholder="Seu nome completo" required>
+
+        <label for="email">E-mail Principal</label>
+        <input type="email" name="Email" id="email" placeholder="exemplo@email.com" required>
+
+        <label for="telefone">Telefone</label>
+        <input type="tel" name="Telefone" id="telefone" placeholder="(00) 00000-0000" required>
+        
+        <label for="turma">Escolha sua Turma</label>
+        <select name="Turma" id="turma" required>
+            <option value="" disabled selected>Carregando turmas disponíveis...</option>
+        </select>
+        
+        <button type="submit" id="submit">Garantir minha Vaga!</button>
+    </form>
+</div>
+
+<!-- MODAIS -->
+<div id="modal-loading" class="modal-overlay">
+    <div class="modal-content">
+        <div class="loader"></div>
+        <h2>Reservando vaga...</h2>
+    </div>
+</div>
+
+<div id="modal-result" class="modal-overlay">
+    <div class="modal-content">
+        <span id="result-icon" class="modal-icon"></span>
+        <h2 id="result-title"></h2>
+        <p id="result-message"></p>
+        <button type="button" class="btn-modal" onclick="closeModal()">Entendido!</button>
+    </div>
+</div>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzsZE2LYpodO9Y_8aGcJD_O2QB1g5WXjPCStdfeg9Sfn5n1SE7xh-R9JfrZM6geaETJ/exec'; 
+
+    // Busca as turmas assim que a página carrega
+    async function loadTurmas() {
+        try {
+            const response = await fetch(scriptURL);
+            const data = await response.json();
+            const select = document.getElementById('turma');
+            select.innerHTML = '<option value="" disabled selected>Selecione um horário</option>';
+
+            let totalVagas = 0;
+
+            data.forEach(turma => {
+                if (turma.restam > 0) {
+                    let option = document.createElement('option');
+                    option.value = turma.nome;
+                    option.text = `${turma.nome} (${turma.restam} vagas restantes)`;
+                    select.appendChild(option);
+                    totalVagas += turma.restam;
+                }
+            });
+
+            if (totalVagas === 0) {
+                select.innerHTML = '<option value="" disabled selected>Todas as turmas estão lotadas!</option>';
+                document.getElementById('submit').disabled = true;
+                document.getElementById('submit').innerText = "Vagas Esgotadas";
+            }
+        } catch (e) {
+            console.error("Erro ao carregar turmas", e);
+        }
+    }
+
+    window.onload = loadTurmas;
+
+    // Envio do formulário
+    const form = document.getElementById('form-inscricao');
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        document.getElementById('modal-loading').style.display = 'flex';
+        
+       fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => response.json()) // Converte a resposta para JSON
+            .then(data => {
+                if (data.result === 'success') {
+                    showResult('Vaga Reservada!', 'Tudo pronto!```** Verifique seu WhatsApp em breve.', '✅');
+                    form.reset();
+                } else {
+                    // Mostra o erro de "Turma Lotada"Dica importante:** Como você mudou o código `.gs`, lembre-se de ir em **Implantar > Gerenciar Implantações** caso aconteça no servidor
+                    showResult('Houve um problema', data.error, '❌');
+                }
+                loadTurmas();
+            })
+            .catch(error => {
+                showResult('Houve um erro', 'Não conseguimos conectar ao servidor.', '❌');
+            });
+    });
+
+    // Coloque aqui suas funções showResult, closeModal e a máscara de telefone
+    // Função para mostrar o Modal de Sucesso ou Erro
+    function showResult(title, message, icon) {
+        document.getElementById('modal-loading').style.display = 'none'; // Fecha o loading
+        document.getElementById('result-title').innerText = title;
+        document.getElementById('result-message').innerText = message;
+        document.getElementById('result-icon').innerText = icon;
+        document.getElementById('modal-result').style.display = 'flex';
+    }
+
+    // Função para fechar o Modal
+    function closeModal() {
+        document.getElementById('modal-result').style.display = 'none';
+    }
+
+    // Máscara de Telefone
+    const telInput = document.getElementById('telefone');
+    if(telInput) {
+        telInput.addEventListener('input', (e) => {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+    }
+</script>
+
+</body>
+</html>
